@@ -1103,7 +1103,7 @@ function termux-language -a lang -d "Set system language"
     clear
       set b_lang $lang_sp
       set bg_lang $g_lang_sp
-      set -U lang 'español'
+      set -Ux lang 'español'
       set -U yes_no s n t
       exec fish
       return
@@ -1111,7 +1111,7 @@ function termux-language -a lang -d "Set system language"
     clear
       set b_lang $lang_en
       set bg_lang $g_lang_en
-      set -U lang 'english'
+      set -Ux lang 'english'
       set -U yes_no y n a
       exec fish
       return
@@ -1119,7 +1119,7 @@ function termux-language -a lang -d "Set system language"
     clear
       set b_lang $lang_fr
       set bg_lang $g_lang_fr
-      set -U lang 'français'
+      set -Ux lang 'français'
       set -U yes_no o n t
       exec fish
       return
@@ -1136,4 +1136,13 @@ function fish_prompt -d 'Write out the left prompt of the barracuda theme'
   echo (set_color -b black)(set_color 777)''(set_color -b 777)(set_color 000) $PWD (set_color normal)(set_color 777)''
   set -g last_status $status
   echo -n -s (__barracuda_prompt_bindmode) (__barracuda_prompt_node_version) (__barracuda_prompt_git_branch) (__barracuda_prompt_left_symbols) (set_color normal)(set_color $barracuda_colors[2])
+end
+
+###############################################################################
+# => Rightprompt
+###############################################################################
+
+function fish_right_prompt -d 'Writes environment language'
+  echo (set_color -b 000)(set_color 444)''(set_color -b 444)(set_color 000)' '$lang(set_color -b 000)(set_color 444)''(set_color normal)
+  set_color normal
 end
