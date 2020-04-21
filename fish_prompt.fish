@@ -1022,7 +1022,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
              tput cuu1
              tput cuu1
              tput ed
-             read -p 'echo -n \n(set_color -b 777 6b052a)" "(set_color -b 777 000)" $b_lang[6] "["$bkup_file"]" ($yes_no[1]/$yes_no[2])? "(set_color -b normal 555)" "(set_color fcfca3)' -n 1 -l argv
+             read -p 'echo -n \n(set_color -b 777 6b052a)" "(set_color -b 777 000)" $b_lang[6] "["$bkup_file"]" ($yes_no[1]/$yes_no[2]) "(set_color -b normal 555)" "(set_color fcfca3)' -n 1 -l argv
                switch $argv
                  case "$yes_no[1]"
                      rm $bkup1/$list1[$bkup_file] 2>/dev/null
@@ -1035,7 +1035,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
              tput ed
              read -p 'echo -n \n(set_color -b 777 6b052a)" "(set_color -b 777 000) $b_lang[7] (set_color -b normal 555)" "(set_color fcfca3)' -n 1 -l argv
                switch $argv
-                 case "$yes_no[1]"
+                 case 'y'
                      rm -Rf $HOME/.backup_termux 2>/dev/null
                      rm -Rf $bkup_dir/.backup_termux 2>/dev/null
                      cd $current_path
@@ -1063,22 +1063,22 @@ function termux-backup -a opt file_name -d 'Backup file system'
      echo "$b_lang[25]"
      return
    case '-c' '--create'
-     if test -d $HOME/storage
+     if test -d $HOME/storage1
        if test -d $tmp_dir
          echo (set_color -b 000 777)\n''(set_color -b 777 -o 000)' Termux-Backup v1.6 '$normal(set_color -b 000 777)''$normal\n
          __backup__ $file_name
          cp -rf $tmp_dir/ $bkup_dir/ 2>/dev/null
          rm -Rf $tmp_dir 2>/dev/null
        else
-         mkdir $tmp_dir
          echo (set_color -b 000 777)\n''(set_color -b 777 -o 000)' Termux-Backup v1.6 '$normal(set_color -b 000 777)''$normal\n
+         mkdir $tmp_dir
          __backup__ $file_name
          cp -rf $tmp_dir/ $bkup_dir/ 2>/dev/null
          rm -Rf $tmp_dir 2>/dev/null
        end
      else
        mkdir $tmp_dir 2>/dev/null
-       echo (set_color -b 000 777)\n''(set_color -b 777 -o 000)' Termux-Backup v1.6 '$normal(set_color -b 000 777)''$normal\n
+         echo (set_color -b 000 777)\n''(set_color -b 777 -o 000)' Termux-Backup v1.6 '$normal(set_color -b 000 777)''$normal\n
        echo "$b_lang[8]"\n"$b_lang[9]"
        echo "$b_lang[10]"(set_color 777)' termux-setup-storage'$normal\n
        __backup__ $file_name
@@ -1097,7 +1097,7 @@ end
 # Set languages
 # --------------------------------
 
-function termux-language -a lang -d "Set interface language"
+function termux-language -a lang -d "Set system language"
   switch $lang
     case 'sp'
     clear
