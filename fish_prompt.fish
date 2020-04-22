@@ -1035,7 +1035,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
              tput ed
              read -p 'echo -n \n(set_color -b 777 6b052a)" "(set_color -b 777 000) $b_lang[7] (set_color -b normal 555)" "(set_color fcfca3)' -n 1 -l argv
                switch $argv
-                 case 'y'
+                 case "$yes_no[1]"
                      rm -Rf $HOME/.backup_termux 2>/dev/null
                      rm -Rf $bkup_dir/.backup_termux 2>/dev/null
                      cd $current_path
