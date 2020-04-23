@@ -30,6 +30,7 @@
 #     -> Termux Backup
 #   -> Prompt initialization
 #   -> Left prompt
+#   -> Right prompt
 #
 ###############################################################################
 
@@ -905,11 +906,11 @@ set -x LOGIN $USER
 # TERMUX-BACKUP
 # -------------
 
-# -- Languages (SP-EN) --
+# -- Languages (SP-EN-FR) --
 
-  set -U lang_sp 'Analizando y recopilando datos...' 'Comprimiendo...' 'No hay archivos de respaldo' 'Borrar' 'Todo' 'Borrar archivo' 'Borrar TODO (s/n)?' 'No se encontró ALMACENAMIENTO_EXTERNO.' 'El respaldo se guardará en ~/.backup_termux' 'Intente escribiendo' '¡Listo! Respaldo realizado con éxito' 'Uso: termux-backup [OPCION]...' '     termux-backup -c [ARCHIVO]...' 'Descripción:' 'Realiza un respaldo de los archivos de usuario y sistema' 'OPCION:' '-c --create		Crear nuevo respaldo' '-d --delete		Borrar archivo de respaldo' '-l --list		Listar archivos de respaldo' '-h --help		Muestra esta ayuda' 'ARCHIVO:' '<nombre_de_archivo>	Nombre del archivo de respaldo' '  Tamaño    Nombre de archivo       Fecha de creación' 'Archivos de respaldo' 'Si no se especifica ninguna OPCION, se creará un archivo de respaldo con <Backup> como identificador por defecto' 'Cancelar'
-  set -U lang_en 'Analizing and collecting data...' 'Compressing...' 'No backups found' 'Delete' 'All' 'Delete item' ' Delete ALL backups (y/n)? ' 'No EXTERNAL_STORAGE mounted.' 'Backup will be stored in ~/.backup_termux' 'Try using ' 'All done\! Backup has been successfuly finished' 'Usage: termux-backup [OPTION]...' '       termux-backup -c [FILE]...' 'Description:' 'Performs a backup of system and user\'s files' 'OPTION:' '-c --create		Create new backup' '-d --delete		Delete existing backup' '-l --list		List backup files' '-h --help		Show this help' 'FILE:' '<bakup_file_name>	Name of backup file' '    Size        File name            Date of creation' 'Backup files' 'If no OPTION is defined, it will be created a backup with default identifier <Backup>' 'Cancel'
-  set -U lang_fr 'Analyser et collecter des données...' 'Compresser...' 'Aucune sauvegarde trouvée' 'Supprimer' 'Tout' 'Supprimer l\'élément' 'Supprimer TOUT (o/n)?' 'Aucun STOCKAGE_EXTERNE monté.' 'La sauvegarde sera stockée dans ~/.backup_termux' 'Essayez d\'utiliser' 'Terminé! La sauvegarde est terminée avec succès' 'Utilisation: termux-backup [OPTION]...' '             termux-backup -c [FILE]...' 'Description:' 'Effectue une sauvegarde du système et des fichiers de l\'utilisateur' 'OPTION:' '-c --create		Créer une nouvelle sauvegarde' '-d --delete		Supprimer la sauvegarde existante' '-l --list		Liste les fichiers de sauvegarde' '-h --help		Afficher cette aide' 'FILE:' '<nom_du_fichier>	Nom du fichier de sauvegarde' '   Taille     Nom du fichier         Date de création' 'Fichiers de sauvegarde' 'Si aucune OPTION n\'est définie, il sera créé une sauvegarde avec l\'identifiant par défaut <Backup>' 'Annuler'
+  set -U lang_sp 'Analizando y recopilando datos...' 'Comprimiendo...' 'No hay archivos de respaldo' 'Borrar' 'Todo' 'Borrar archivo' 'Borrar TODO (s/n)?' 'No se encontró ALMACENAMIENTO_EXTERNO.' 'El respaldo se guardará en ~/.backup_termux' 'Intente escribiendo' '¡Listo! Respaldo realizado con éxito' 'Uso: termux-backup [OPCION]...' '     termux-backup -c [ARCHIVO]...' 'Descripción:' 'Realiza un respaldo de los archivos de usuario y sistema' 'OPCION:' '-c --create		Crear nuevo respaldo' '-d --delete		Borrar archivo de respaldo' '-l --list		Listar archivos de respaldo' '-h --help		Muestra esta ayuda' 'ARCHIVO:' '<nombre_de_archivo>	Nombre del archivo de respaldo' '  Tamaño    Nombre de archivo       Fecha de creación' 'Archivos de respaldo' 'Si no se especifica ninguna OPCION, se creará un archivo de respaldo con <Backup> como identificador por defecto' 'Cancelar' 'Copia de respaldo eliminada' 'Se eliminaron todos los respaldos'
+  set -U lang_en 'Analizing and collecting data...' 'Compressing...' 'No backups found' 'Delete' 'All' 'Delete item' ' Delete ALL backups (y/n)? ' 'No EXTERNAL_STORAGE mounted.' 'Backup will be stored in ~/.backup_termux' 'Try using ' 'All done\! Backup has been successfuly finished' 'Usage: termux-backup [OPTION]...' '       termux-backup -c [FILE]...' 'Description:' 'Performs a backup of system and user\'s files' 'OPTION:' '-c --create		Create new backup' '-d --delete		Delete existing backup' '-l --list		List backup files' '-h --help		Show this help' 'FILE:' '<bakup_file_name>	Name of backup file' '    Size        File name            Date of creation' 'Backup files' 'If no OPTION is defined, it will be created a backup with default identifier <Backup>' 'Cancel' 'Backup deleted' 'All backups has been deleted'
+  set -U lang_fr 'Analyser et collecter des données...' 'Compresser...' 'Aucune sauvegarde trouvée' 'Supprimer' 'Tout' 'Supprimer l\'élément' 'Supprimer TOUT (o/n)?' 'Aucun STOCKAGE_EXTERNE monté.' 'La sauvegarde sera stockée dans ~/.backup_termux' 'Essayez d\'utiliser' 'Terminé! La sauvegarde est terminée avec succès' 'Utilisation: termux-backup [OPTION]...' '             termux-backup -c [FILE]...' 'Description:' 'Effectue une sauvegarde du système et des fichiers de l\'utilisateur' 'OPTION:' '-c --create		Créer une nouvelle sauvegarde' '-d --delete		Supprimer la sauvegarde existante' '-l --list		Liste les fichiers de sauvegarde' '-h --help		Afficher cette aide' 'FILE:' '<nom_du_fichier>	Nom du fichier de sauvegarde' '   Taille     Nom du fichier         Date de création' 'Fichiers de sauvegarde' 'Si aucune OPTION n\'est définie, il sera créé une sauvegarde avec l\'identifiant par défaut <Backup>' 'Annuler' 'Sauvegarde supprimée' 'Toutes les sauvegardes ont été supprimées'
 
   if not set -q b_lang
     set -U b_lang $lang_sp
@@ -923,6 +924,10 @@ set -x LOGIN $USER
   set -g bkup1 $bkup_dir.backup_termux
   set -g bkup2 $tmp_dir
 
+# -- Some cleaning --
+
+  echo '' > $termux_path/usr/etc/motd
+
 # ---------------------------- #
 
 function __backup__ -a file_name
@@ -931,7 +936,7 @@ function __backup__ -a file_name
   echo "home/storage/"\n"home/.backup_termux/"\n"home/exclude"\n"home/termux_backup_log.txt"\n"usr/tmp"\n > $HOME/exclude
 
   set current_path (pwd)
-  set -g termux_path (cd $HOME && .. && pwd)
+  set -g termux_path ($HOME && .. && pwd)
   set bkup_date (date +%s)
   set file $file_name-$bkup_date
   set f_count_total (find . -type f | wc -l)
@@ -940,6 +945,8 @@ function __backup__ -a file_name
   set -g text (set_color -o cb4b16)
   set -g frame (set_color -o white)
   set -g normal (set_color normal)
+
+  echo '' > $termux_path/usr/etc/motd
 
   echo (set_color -b 000 fcfca3)$b_lang[1]$normal
   set_color 999 && rsync -av --exclude-from='home/exclude' $termux_path/ $tmp_dir/$file/ | pv -lpes $f_count >/dev/null
@@ -1035,6 +1042,9 @@ function termux-backup -a opt file_name -d 'Backup file system'
                      rm $bkup1/$list1[$bkup_file] 2>/dev/null
                      rm $bkup2/$list1[$bkup_file] 2>/dev/null
                      cd $current_path
+    		     if test -e $termux_path/usr/bin/termux-toast
+		       termux-toast -b "#222222" -g top -c white $b_lang[27]
+		     end
 	             for x in (seq (expr $num_items + 9))
 	               tput cuu1
 	               tput ed
@@ -1065,6 +1075,9 @@ function termux-backup -a opt file_name -d 'Backup file system'
                      rm -Rf $HOME/.backup_termux 2>/dev/null
                      rm -Rf $bkup_dir/.backup_termux 2>/dev/null
                      cd $current_path
+		     if test -e $termux_path/usr/bin/termux-toast
+		       termux-toast -b "#222222" -g top -c white $b_lang[28]
+		     end
 	             for x in (seq (expr $num_items + 9))
 	               tput cuu1
 	               tput ed
@@ -1098,7 +1111,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
      echo "$b_lang[25]"
      return
    case '-c' '--create'
-     if test -d $HOME/storage1
+     if test -d $HOME/storage
        if test -d $tmp_dir
          echo (set_color -b 000 777)\n''(set_color -b 777 -o 000)' Termux-Backup v1.6 '$normal(set_color -b 000 777)''$normal\n
          __backup__ $file_name
