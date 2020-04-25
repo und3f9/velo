@@ -55,6 +55,7 @@ set -U barracuda_cursors "\033]12;#$barracuda_colors[5]\007" "\033]12;#$barracud
 ###############################################################################
 
 alias ps "ps -ef"
+alias version 'echo (set_color cb4b16)Barracuda theme  $barracuda_version'
 alias backup "termux-backup"
 alias spanish "termux-language sp"
 alias english "termux-language en"
@@ -899,14 +900,14 @@ end
 set -x LOGIN $USER
 
 ###############################################################################
-# => Custom functions
+# => Custom Functions
 ###############################################################################
 
 # -------------
 # TERMUX-BACKUP
 # -------------
 
-# -- Languages (SP-EN-FR) --
+# -- Languages (SP - EN - FR) --
 
   set -U lang_sp 'Analizando y recopilando datos...' 'Comprimiendo...' 'No hay archivos de respaldo' 'Borrar' 'Todo' 'Borrar archivo' 'Borrar TODO (s/n)?' 'No se encontró ALMACENAMIENTO_EXTERNO.' 'El respaldo se guardará en ~/.backup_termux' 'Intente escribiendo' '¡Listo! Respaldo realizado con éxito' 'Uso: termux-backup [OPCION]...' '     termux-backup -c [ARCHIVO]...' 'Descripción:' 'Realiza un respaldo de los archivos de usuario y sistema' 'OPCION:' '-c --create		Crear nuevo respaldo' '-d --delete		Borrar archivo de respaldo' '-l --list		Listar archivos de respaldo' '-h --help		Muestra esta ayuda' 'ARCHIVO:' '<nombre_de_archivo>	Nombre del archivo de respaldo' '       Nombre de archivo     Tamaño    Fecha' 'Archivos de respaldo' 'Si no se especifica ninguna OPCION, se creará un archivo de respaldo con <Backup> como identificador por defecto' 'Cancelar' 'Copia de respaldo eliminada' 'Se eliminaron todos los arvivos de respaldos'
   set -U lang_en 'Analizing and collecting data...' 'Compressing...' 'No backups found' 'Delete' 'All' 'Delete item' ' Delete ALL backups (y/n)? ' 'No EXTERNAL_STORAGE mounted.' 'Backup will be stored in ~/.backup_termux' 'Try using ' 'All done\! Backup has been successfuly finished' 'Usage: termux-backup [OPTION]...' '       termux-backup -c [FILE]...' 'Description:' 'Performs a backup of system and user\'s files' 'OPTION:' '-c --create		Create new backup' '-d --delete		Delete existing backup' '-l --list		List backup files' '-h --help		Show this help' 'FILE:' '<bakup_file_name>	Name of backup file' '           File name          Size      Date' 'Backup files' 'If no OPTION is defined, it will be created a backup with default identifier <Backup>' 'Cancel' 'popsBackup deleted' 'All backups has been deleted'
@@ -924,7 +925,7 @@ set -x LOGIN $USER
   set -g bkup1 $bkup_dir.backup_termux
   set -g bkup2 $tmp_dir
 
-# -- Some cleaning and defaults--
+# -- Some cleaning and defaults --
 
   echo '' > $termux_path/usr/etc/motd
 
@@ -932,7 +933,7 @@ set -x LOGIN $USER
 
 function __backup__ -a file_name
 
-  [ $file_name ]; or set file_name 'Backup'  #Set defaults:
+  [ $file_name ]; or set file_name 'Backup'	#Set defaults:
   echo "home/storage/"\n"home/.backup_termux/"\n"home/exclude"\n"home/termux_backup_log.txt"\n"usr/tmp"\n > $HOME/exclude
 
   set current_path (pwd)
@@ -965,11 +966,9 @@ function termux-backup -a opt file_name -d 'Backup file system'
 
  [ $file_name ]; or set file_name ''
 
-
-
  switch $opt
 
-   ## ------ LIST BACKUPS ------
+## ------ LIST BACKUPS ------
 
    case '-l' '--list'
      if test ! -d $bkup1 -a ! -d $bkup2
@@ -997,12 +996,12 @@ function termux-backup -a opt file_name -d 'Backup file system'
            else
              set line_color 999
            end
-           echo (set_color $line_color)'▶ '$i' '$list[$i]
+           echo (set_color $line_color)''▶ $i $list[$i]
          end
        end
      end
 
-   ## ------ DELETE BACKUPS ------
+## ------ DELETE BACKUPS ------
 
    case '-d' '--delete'
      if test ! -d $bkup1 -a ! -d $bkup2
@@ -1119,7 +1118,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
        end
      end
 
-   ## ------ SHOW HELP ------
+## ------ SHOW HELP ------
 
    case '-h' '--help' ''
      echo
@@ -1137,7 +1136,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
      echo "$b_lang[25]"
      return
 
-   ## ------ CREATE BACKUPS ------
+## ------ CREATE BACKUPS ------
 
    case '-c' '--create'
      if test -d $HOME/storage
