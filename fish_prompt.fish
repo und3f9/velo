@@ -70,6 +70,7 @@ set -U barracuda_cursors "\033]12;#$barracuda_colors[5]\007" "\033]12;#$barracud
 ###############################################################################
 
 alias ps "ps -ef"
+alias ls "ls -gh"
 alias version 'echo (set_color -o $barracuda_colors[5])Barracuda theme - $barracuda_version'
 alias backup "termux-backup"
 alias spanish "termux-language sp"
@@ -924,9 +925,10 @@ set -x LOGIN $USER
 
 # -- Set global variables --
 
+  set -g termux_path '/data/data/com.termux/files'
   set -g tmp_dir $HOME/.backup_termux
-  set -g bkup_dir $HOME/storage/shared/
-  set -g bkup1 $bkup_dir.backup_termux
+  set -g bkup_dir $HOME/storage/shared
+  set -g bkup1 $bkup_dir/.backup_termux
   set -g bkup2 $tmp_dir
 
 # -- Some cleaning and defaults --
@@ -938,38 +940,44 @@ set -x LOGIN $USER
 function __break__
   trap INT
   echo \n"$b_lang[30]"
+  cd $HOME
 end
 
 # ---------------------------- #
 
 function __backup__ -a file_name
 
-  [ $file_name ]; or set file_name 'Backup'	#Set defaults:
-  echo "home/storage/"\n"home/.backup_termux/"\n"home/exclude"\n"home/termux_backup_log.txt"\n"usr/tmp"\n > $HOME/exclude
+  [ $file_name ]; or set file_name 'Backup'   #Set defaults:
+  echo "home/storage/"\n"home/.backup_termux/"\n"home/exclude"\n"home/termux_backup_log.txt"\n"usr/tmp"\n"home/.suroot/"\n > $HOME/exclude
 
   set current_path (pwd)
-  set -g termux_path ($HOME && .. && pwd)
   set bkup_date (date +%s)
   set file $file_name-$bkup_date
-  set f_count_total (find . -type f | wc -l)
+  set f_count_total (find $termux_path/. -type f | wc -l)
+  if test -d $tmp_dir
+    set f_count_bkup (find $tmp_dir/. -type f | wc -l)
+  else
+    set f_count_bkup 0
+  end
+  
   set f_count_p (math (math $f_count_total / 100 x 15) + $f_count_total)
-  set f_count (echo $f_count_p/1 | bc)
+  set f_count (math $f_count_total - $f_count_bkup)
   set -g text (set_color -o cb4b16)
   set -g frame (set_color -o white)
   set -g normal (set_color normal)
 
   echo (set_color -b 000 fcfca3)$b_lang[1]$normal
-  set_color 999 && rsync -av --exclude-from='home/exclude' $termux_path/ $tmp_dir/$file/ | pv -lpes $f_count >/dev/null 
+  set_color 999 && rsync -av --exclude-from=$termux_path/home/exclude $termux_path/ $tmp_dir/$file/ | pv -lpes $f_count >/dev/null
 
   set f_count_tmp_real (find $tmp_dir -type f | wc -l)
   set f_count_tmp_p (math $f_count_tmp_real - (math $f_count_tmp_real / 100 x 44.5))
   set f_count_tmp (echo $f_count_tmp_p/1 | bc)
 
-  cd $current_path
+  cd $tmp_dir/$file && pwd
   echo (set_color -b 000 fcfca3)$b_lang[2]$normal
-  set_color 999 && tar -czf - $tmp_dir/$file/ 2>/dev/null | pv -leps $f_count_tmp > $tmp_dir/$file.tar.gz
+  set_color 999 && tar -czf - * 2>/dev/null | pv -leps $f_count_tmp > $tmp_dir/$file.tar.gz
   rm -Rf $tmp_dir/$file $HOME/exclude
-
+  cd $current_path
  end
 
 # ------------------------- #
@@ -1157,7 +1165,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
        if test -d $tmp_dir
          echo (set_color -b 000 777)\n''(set_color -b 777 -o 000)' Termux-Backup v1.6 '$normal(set_color -b 000 777)''$normal\n
 
-	 mkdir -p $bkup1
+         mkdir -p $bkup1
          mv -f $tmp_dir/*.tar.gz $bkup1/
 
          __backup__ $file_name
@@ -1245,7 +1253,7 @@ function fish_right_prompt -d 'Writes environment language'
   set div (echo (set_color -b 444 $barracuda_colors[5])"|"(set_color normal))
   switch $b_os
     case "Android"
-      set -g os (echo (set_color cb4b16)os:(set_color normal)(set_color -b 444 aaa)(set_color normal)$div Marvin)
+      set -g os (echo (set_color cb4b16)os:(set_color normal)(set_color -b 444 aaa)(set_color normal)$div)
 #    case "Windows"
 #    case "Debian"
 #    case "Ubuntu"
