@@ -959,8 +959,6 @@ function __backup__ -a file_name
   else
     set f_count_bkup 0
   end
-  
-  set f_count_p (math (math $f_count_total / 100 x 15) + $f_count_total)
   set f_count (math $f_count_total - $f_count_bkup)
   set -g text (set_color -o cb4b16)
   set -g frame (set_color -o white)
@@ -969,11 +967,9 @@ function __backup__ -a file_name
   echo (set_color -b 000 fcfca3)$b_lang[1]$normal
   set_color 999 && rsync -av --exclude-from=$termux_path/home/exclude $termux_path/ $tmp_dir/$file/ | pv -lpes $f_count >/dev/null
 
-  set f_count_tmp_real (find $tmp_dir -type f | wc -l)
-  set f_count_tmp_p (math $f_count_tmp_real - (math $f_count_tmp_real / 100 x 44.5))
-  set f_count_tmp (echo $f_count_tmp_p/1 | bc)
+  set f_count_tmp (find $tmp_dir/$file/. -type f | wc -l)
 
-  cd $tmp_dir/$file && pwd
+  cd $tmp_dir/$file
   echo (set_color -b 000 fcfca3)$b_lang[2]$normal
   set_color 999 && tar -czf - * 2>/dev/null | pv -leps $f_count_tmp > $tmp_dir/$file.tar.gz
   rm -Rf $tmp_dir/$file $HOME/exclude
@@ -1031,7 +1027,7 @@ function termux-backup -a opt file_name -d 'Backup file system'
 
      if test -d $bkup1 -o -d $bkup2
        set list (ls -gh $bkup1 $bkup2 2>/dev/null | grep --color=never ".tar.gz" | awk '{print $8"  "$4"  "$6"-"$5" "$7}' | sort -nr)
-       set list1 (ls $bkup1 $bkup2 2>/dev/null | grep --color=never ".tar.gz" | sort -nr)
+       set list1 (ls $bkup1 $bkup2 2>/dev/null | grep --color=never ".tar.gz" | awk '{print $8}' | sort -nr)
        set -l num_items (count $list1)
 
        if [ $num_items -eq 0 ]
