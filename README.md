@@ -1,8 +1,7 @@
-# Barracuda theme (for fish in Termux terminal)
+# Velo theme 
 
-This theme is a fork of [oh-my-fish/theme-budspencer](https://github.com/oh-my-fish/theme-budspencer), which means it keeps almost all it's awesome features.
+This theme is a fork of [meverss/barracuda](https://github.com/meverss/barracuda), with an attempt of removing termux dependency. No updates are gurenteed. 
 
-Some fancy visual changes has been done taking advantage of Powerline Symbols.
 
 Barracuda is in essence:
 
@@ -17,15 +16,6 @@ lot of nice functions and key bindings to speed up your workflow
 [nightly build][fish-nightly].
 * Patched Powerline fonts installed. \(See how to install [here](https://github.com/powerline/fonts))
 
-Non standard tools:
-
-* APK Termux:API plug-in \(It's recommended to download **Termux** and **Termux:API** from [F-Droid](https://f-droid.org) as both apps most have the same PGP signature\) 
-<details>
-<summary>termux-api</summary>
-
-```fish
-apt install termux-api
-```
 </details>
 <details>
 <summary>nodejs</summary>
@@ -54,28 +44,6 @@ set -U fish_key_bindings fish_vi_key_bindings
 ```
 before enabling the theme.
 
-### Languages
-
-This theme can be shown in different languages (three langiages so far): Spanish, English and French
-
-There are two ways to change interface language: one is by using the function `termux-language` followed by the language identifier, and
-the other one, just typing the language name on the prompt.
-
-Supported languages and their identifiers are:
-
-* **sp** for **spanish**
-* **en** for **english**
-* **fr** for **french**
-
-e.g To set french language:
-```
-termux-language fr
-```
-
-Or
-```
-french
-```
 
 ### Colors
 
@@ -87,18 +55,6 @@ Commands that shouldn't appear in the command history are defined by a universal
 list `$barracuda_nocmdhist`. Default:
 ```
 set -U barracuda_nocmdhist c d ll ls m s
-```
-
-### Disable/reenable greeting
-
-Disable:
-```
-set -U barracuda_nogreeting
-```
-
-Reenable:
-```
-set -e barracuda_nogreeting
 ```
 
 ### Show Node version
@@ -231,39 +187,6 @@ Switch it off in that case:
 ```
 set -U barracuda_nobell
 ```
-## Termux Backup
-
-With this function it's possible to perdorm a full backup of system and user's files.
-
-To create a new backup type:
-```
-termux-backup -c <or> --create [file_name]
-```
-
-To list existing backups use:
-```
-termux-backup -l <or> --list
-```
-![screenshot](images/screenshot_l.jpg)
-
-To delete an existing backup:
-```
-termux-backup -d <or> --delete
-```
-![screenshot](images/screenshot_d.jpg)
-To show help:
-```
-termux-backup -h <or> --help
-```
-
-Unfortunately this function can only perform backups. Restores have to be decompressed and copied manually.
-
-<details>
-<summary>TODO</summary>
-
-* Add option to restore backups
-* Add support for more languages
-</details>
 
 [font]: https://github.com/Lokaltog/powerline-fonts
 [ranger]: http://ranger.nongnu.org/
