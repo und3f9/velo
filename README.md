@@ -1,6 +1,6 @@
 # Velo theme 
 
-This theme is a fork of [meverss/barracuda](https://github.com/meverss/barracuda), with an attempt of removing termux dependency. No updates are gurenteed. 
+This theme is a fork of [meverss/barracuda](https://github.com/meverss/barracuda), with an attempt of removing termux dependency. No updates are guaranteed. 
 
 
 Barracuda is in essence:
