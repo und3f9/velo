@@ -1,0 +1,20 @@
+# -- Languages (SP-EN) --
+
+function fish_greeting -d "Welcome Message"
+    set n (set_color normal)
+    set h (set_color 999)
+    set b (set_color -b black)(set_color b58900)''(set_color -b b58900)(set_color 000000) #083743)
+    set t (set_color eee)
+    set e (set_color normal)(set_color b58900)''(set_color normal)
+    set -g barracuda_version (echo (set_color -b 000 cb4b16)''(set_color -b cb4b16 -o 000)'v1.6'(set_color -b 000 cb4b16)''$n)
+
+    set_color -o cb4b16
+    tput cuu1 && tput cuu1
+    echo " _                                         _       "
+    echo "| |__   __ _ _ __ _ __ __ _  ___ _   _  __| | __ _ "
+    echo "| '_ \ / _` | '__| '__/ _` |/ __| | | |/ _` |/ _` |"
+    echo "| |_) | (_| | |  | | | (_| | (__| |_| | (_| | (_| |"
+    echo "|_.__/ \__,_|_|  |_|  \__,_|\___|\__,_|\__,_|\__,_| $barracuda_version"
+    echo \n
+    set_color normal
+end
