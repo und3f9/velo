@@ -8,8 +8,6 @@ Barracuda is in essence:
 > A theme for nerds, makes fish even more powerful. It's equipped with a hell of a
 lot of nice functions and key bindings to speed up your workflow
 
-![screenshot](images/screenshot.jpg)
-
 ## Requirements
 
 * An up-to-date fish shell version from [github][fish-git] or a
